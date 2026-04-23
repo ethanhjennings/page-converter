@@ -73,6 +73,7 @@ function PageInput({ className, ...props }: ComponentProps<typeof Input>) {
       type="number"
       inputMode="numeric"
       className={["no-spinner", className].filter(Boolean).join(" ")}
+      placeholder='page #'
     />);
 }
 
@@ -187,7 +188,6 @@ function App() {
                   <PageInput
                     id="book1PageEnd"
                     aria-label="Book 1 end page"
-                    placeholder=""
                     value={book1PageEnd}
                     onChange={(e) => {
                       updatePageRange('book1PageEnd', e.target.value, setBook1PageEnd);
@@ -203,7 +203,6 @@ function App() {
                   <PageInput
                     id="book2PageStart"
                     aria-label="Book 2 start page"
-                    placeholder=""
                     value={book2PageStart}
                     onChange={(e) => {
                       updatePageRange('book2PageStart', e.target.value, setBook2PageStart);
@@ -213,7 +212,6 @@ function App() {
                   <PageInput
                     id="book2PageEnd"
                     aria-label="Book 2 end page"
-                    placeholder=""
                     value={book2PageEnd}
                     onChange={(e) => {
                       updatePageRange('book2PageEnd', e.target.value, setBook2PageEnd);
@@ -233,7 +231,6 @@ function App() {
                 <PageInput
                   id="currentPageBook1"
                   aria-label="Current page in book 1"
-                  placeholder="Page"
                   value={currentPageBook1}
                   onChange={(e) => {
                     updateCurrentPageBook1(e.target.value);
@@ -246,7 +243,6 @@ function App() {
                 <PageInput
                   id="currentPageBook2"
                   aria-label="Current page in book 2"
-                  placeholder="Page"
                   value={currentPageBook2}
                   onChange={(e) => {
                     updateCurrentPageBook2(e.target.value);
