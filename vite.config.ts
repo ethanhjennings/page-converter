@@ -5,11 +5,12 @@ import tailwindcss from "@tailwindcss/vite"
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/page-converter/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-    build: { sourcemap: true }
+  build: { sourcemap: true }
 })

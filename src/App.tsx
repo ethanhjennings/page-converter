@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type ComponentProps } from 'react'
 import './App.css'
 
 import {
@@ -64,6 +64,16 @@ const convertPage = (
 function getLocalstorage(key: string, defaultValue: string): string {
   const value = localStorage.getItem(key);
   return value ? JSON.parse(value) : defaultValue;
+}
+
+function PageInput({ className, ...props }: ComponentProps<typeof Input>) {
+  return (
+    <Input
+      {...props}
+      type="number"
+      inputMode="numeric"
+      className={["no-spinner", className].filter(Boolean).join(" ")}
+    />);
 }
 
 function App() {
@@ -165,23 +175,18 @@ function App() {
                 <FieldTitle>Book 1</FieldTitle>
 
                 <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2">
-                  <Input
+                  <PageInput
                     id="book1PageStart"
                     aria-label="Book 1 start page"
-                    type="number"
-                    inputMode="numeric"
-                    placeholder="0"
                     value={book1PageStart}
                     onChange={(e) => {
                       updatePageRange('book1PageStart', e.target.value, setBook1PageStart);
                     }}
                   />
                   <span className="text-sm text-muted-foreground">to</span>
-                  <Input
+                  <PageInput
                     id="book1PageEnd"
                     aria-label="Book 1 end page"
-                    type="number"
-                    inputMode="numeric"
                     placeholder=""
                     value={book1PageEnd}
                     onChange={(e) => {
@@ -195,11 +200,9 @@ function App() {
                 <FieldTitle>Book 2</FieldTitle>
 
                 <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2">
-                  <Input
+                  <PageInput
                     id="book2PageStart"
                     aria-label="Book 2 start page"
-                    type="number"
-                    inputMode="numeric"
                     placeholder=""
                     value={book2PageStart}
                     onChange={(e) => {
@@ -207,11 +210,9 @@ function App() {
                     }}
                   />
                   <span className="text-sm text-muted-foreground">to</span>
-                  <Input
+                  <PageInput
                     id="book2PageEnd"
                     aria-label="Book 2 end page"
-                    type="number"
-                    inputMode="numeric"
                     placeholder=""
                     value={book2PageEnd}
                     onChange={(e) => {
@@ -229,11 +230,9 @@ function App() {
             <div className="grid gap-4">
               <Field className="grid gap-2 sm:grid-cols-[7.5rem_minmax(0,1fr)] sm:items-center">
                 <FieldTitle>Book 1</FieldTitle>
-                <Input
+                <PageInput
                   id="currentPageBook1"
                   aria-label="Current page in book 1"
-                  type="number"
-                  inputMode="numeric"
                   placeholder="Page"
                   value={currentPageBook1}
                   onChange={(e) => {
@@ -244,11 +243,9 @@ function App() {
 
               <Field className="grid gap-2 sm:grid-cols-[7.5rem_minmax(0,1fr)] sm:items-center">
                 <FieldTitle>Book 2</FieldTitle>
-                <Input
+                <PageInput
                   id="currentPageBook2"
                   aria-label="Current page in book 2"
-                  type="number"
-                  inputMode="numeric"
                   placeholder="Page"
                   value={currentPageBook2}
                   onChange={(e) => {
